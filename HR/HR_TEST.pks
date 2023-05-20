@@ -4,8 +4,6 @@ CREATE OR REPLACE PACKAGE HR.hr_test AS
   -- %test(Add Job History Test) 
   PROCEDURE add_job_history_test;
 
-    --%test
-    PROCEDURE TEST_1;
 END;
 /
 
@@ -36,10 +34,6 @@ CREATE OR REPLACE PACKAGE BODY HR.hr_test AS
     ut.expect(l_record.department_id).to_equal(l_department_id);
   END;
 
-    PROCEDURE TEST_1 AS
-    BEGIN
-        NULL;
-    END;
 END;
 /
 
