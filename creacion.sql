@@ -1,0 +1,3 @@
+CREATE TABLE JoseCarlos (
+    id NUMBER PRIMARY KEY
+);
