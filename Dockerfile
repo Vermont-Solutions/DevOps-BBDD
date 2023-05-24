@@ -1,5 +1,5 @@
 # Usa la imagen base de Oracle
-FROM vermontjc/oracle19
+FROM oracleinanutshell/oracle-xe-11g:latest
 
 # Copia tus scripts a la imagen
 # COPY ./scripts/ /docker-entrypoint-initdb.d/
