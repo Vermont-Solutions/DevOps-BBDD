@@ -1,6 +1,9 @@
 # Usa la imagen base de Oracle
 FROM oracleinanutshell/oracle-xe-11g:latest
 
+# Instala unzip
+RUN apt-get update && apt-get install -y unzip
+
 # Descarga el cliente SQL*Plus instantáneo
 ADD https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basic-linux.x64-21.1.0.0.0.zip /tmp/instantclient.zip
 
@@ -17,6 +20,7 @@ ENV PATH=/opt/instantclient:$PATH
 ENV ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
 ENV PATH=$ORACLE_HOME/bin:$PATH
 ENV ORACLE_SID=XE
+
 
 # Copia tus scripts a la imagen
 # COPY ./scripts/ /docker-entrypoint-initdb.d/
