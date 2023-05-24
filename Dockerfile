@@ -1,11 +1,13 @@
 # Usa la imagen base de Oracle
 FROM oracleinanutshell/oracle-xe-11g:latest
 
+# Instala el cliente de Oracle (sqlplus)
+RUN apt-get update && apt-get install -y sqlplus
+
 # Establece las variables de entorno necesarias
 ENV ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
 ENV PATH=$ORACLE_HOME/bin:$PATH
 ENV ORACLE_SID=XE
-
 # Copia tus scripts a la imagen
 # COPY ./scripts/ /docker-entrypoint-initdb.d/
 
