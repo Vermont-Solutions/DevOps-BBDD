@@ -1,26 +1,35 @@
 pipeline {
-    agent any
-    
+    agent any 
+
     stages {
-        stage('Levantar contenedor') {
+        stage('Clone Git repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Vermont-Solutions/DevOps-BBDD.git'
+            }
+        }
+        stage('Build Docker Image') {
             steps {
                 script {
-                    docker.image('vermontjc/oracle19').run('-d -p 1521:1521 --name oracle19')
+                    sh 'docker build -t my-docker-image .'
                 }
-                 
             }
         }
-        
-        stage('Realizar pruebas') {
+        stage('Run and Sleep') {
             steps {
-               echo 'Hello World'
+                script {
+                    // Run the container in the background
+                    sh 'docker run -d -p 1525:1521 -p 5505:5500 --name=oracle11Test -e ORACLE_PWD=Password123$ oracleinanutshell/oracle-xe-11g:latest'
+                    // Sleep for 1 minute
+                    sh 'sleep 300'
+                }
             }
         }
-        
-        stage('Detener contenedor') {
+        stage('Stop and Remove Container') {
             steps {
-                sh 'docker stop oracle19'
-                sh 'docker rm oracle19'
+                script {
+                    sh 'docker stop my-container'
+                    sh 'docker rm my-container'
+                }
             }
         }
     }
