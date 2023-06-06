@@ -9,7 +9,7 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/Vermont-Solutions/DevOps-BBDD.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/desarrollo']], userRemoteConfigs: [[url: 'https://github.com/Vermont-Solutions/DevOps-BBDD.git']]])
       }
     }
 
