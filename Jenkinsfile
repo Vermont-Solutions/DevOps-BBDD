@@ -5,6 +5,10 @@ pipeline {
       steps {
         echo 'Hello'
         echo 'Build '
+        withSonarQubeEnv('sonarqube') {
+          waitForQualityGate true
+        }
+
       }
     }
 
