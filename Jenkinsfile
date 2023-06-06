@@ -5,10 +5,6 @@ pipeline {
       steps {
         echo 'Hello'
         echo 'Build '
-        withSonarQubeEnv('sonarqube') {
-          waitForQualityGate true
-        }
-
       }
     }
 
@@ -16,10 +12,12 @@ pipeline {
       parallel {
         stage('Print Tester Credential') {
           steps {
-            slackSend(color: 'good', message: "Mensaje enviado correctamente")
+            slackSend(color: 'good', message: 'Mensaje enviado correctamente')
           }
         }
+
       }
     }
+
   }
 }
