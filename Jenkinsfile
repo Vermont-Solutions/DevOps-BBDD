@@ -26,6 +26,9 @@ pipeline {
             echo 'This is build number ${BUILD_ID}'
             sleep 20
           }
+          steps {
+            slackSend(color: 'good', message: "Mensaje enviado correctamente")
+          }
         }
 
       }
