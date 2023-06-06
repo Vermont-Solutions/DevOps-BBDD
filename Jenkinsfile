@@ -4,19 +4,12 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Hello'
-        sh 'mvn clean install -Dlicense.skip=true'
         echo 'Build '
       }
     }
 
     stage('Testing') {
       parallel {
-        stage('Testing') {
-          steps {
-            sh 'mvn sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dlicense.skip=true'
-          }
-        }
-
         stage('Print Tester Credential') {
           steps {
             echo 'The tester is ${TESTER}'
