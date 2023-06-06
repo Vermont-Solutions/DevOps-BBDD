@@ -1,36 +1,38 @@
 pipeline {
-    agent any 
-
-    stages {
-        stage('Clone Git repository') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Vermont-Solutions/DevOps-BBDD.git'
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh 'docker build -t my-docker-image .'
-                }
-            }
-        }
-        stage('Run and Sleep') {
-            steps {
-                script {
-                    // Run the container in the background
-                    sh 'docker run -d -p 1525:1521 -p 5505:5500 --name=oracle11Test -e ORACLE_PWD=Password123$ oracleinanutshell/oracle-xe-11g:latest'
-                    // Sleep for 1 minute
-                    sh 'sleep 300'
-                }
-            }
-        }
-        stage('Stop and Remove Container') {
-            steps {
-                script {
-                    sh 'docker stop my-container'
-                    sh 'docker rm my-container'
-                }
-            }
-        }
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Hello'
+        sh 'mvn clean install -Dlicense.skip=true'
+        echo 'Build '
+      }
     }
+
+    stage('Testing') {
+      parallel {
+        stage('Testing') {
+          steps {
+            sh 'mvn sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dlicense.skip=true'
+          }
+        }
+
+        stage('Print Tester Credential') {
+          steps {
+            echo 'The tester is ${TESTER}'
+            sleep 10
+          }
+        }
+
+        stage('Print build number') {
+          steps {
+            echo 'This is build number ${BUILD_ID}'
+            sleep 20
+          }
+        }
+
+      }
+    }
+
+  }
 }
