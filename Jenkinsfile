@@ -13,10 +13,6 @@ pipeline {
         checkout([$class: 'GitSCM', branches: [[name: '*/desarrollo']], userRemoteConfigs: [[url: 'https://github.com/Vermont-Solutions/DevOps-BBDD.git']]])
       }
     }
-    tools {
-      // Especificar la instalación del SonarQube Scanner
-      sonarqubeScanner 'sonarqube'
-    }
     stage('SonarQube analysis') {
       steps {
         withSonarQubeEnv('sonarqube') {
