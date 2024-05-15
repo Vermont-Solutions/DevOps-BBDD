@@ -19,7 +19,7 @@ pipeline {
     stage('Run and Sleep') {
       steps {
         script {
-          sh 'docker run -d -p 1525:1521 -p 5505:5500 --name=oracle11Test -e ORACLE_PWD=Password123$ oracleinanutshell/oracle-xe-11g:latest'
+          sh 'docker run -d -p 1525:1521 -p 5505:5500 --name=my-container -e ORACLE_PWD=Password123$ oracleinanutshell/oracle-xe-11g:latest'
           // Sleep for 1 minute
           sh 'sleep 300'
         }
