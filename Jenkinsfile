@@ -3,7 +3,7 @@ pipeline {
   environment {
     SONARQUBE_SCANNER_HOME = tool name: 'SonarQube Scanner'
     SONAR_HOST_URL = 'http://localhost:9000'
-    SONAR_AUTH_TOKEN = credentials('jenkis') // Asegúrate de que este ID de credencial existe en Jenkins
+    SONAR_AUTH_TOKEN = credentials('sqa_7f39146dfef54d308ea719c95524b3fda1feafd5') // Asegúrate de que este ID de credencial existe en Jenkins
   }
   stages {
     stage('Clone Git repository') {
