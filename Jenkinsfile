@@ -34,7 +34,7 @@ pipeline {
           // Información de debug
           sh 'echo "Ejecutando el contenedor y esperando"'
           sh 'docker run -d -p 1525:1521 -p 5505:5500 --name=my-container -e ORACLE_PWD=Password123$ oracleinanutshell/oracle-xe-11g:latest'
-          // Sleep for 5 minutes to ensure the container is fully up
+          // Sleep for 30 segundos to ensure the container is fully up
           sh 'sleep 30'
         }
       }
@@ -47,7 +47,7 @@ pipeline {
           sh 'echo "Iniciando análisis con SonarQube"'
           sh "${SONARQUBE_SCANNER_HOME}/bin/sonar-scanner \
             -Dsonar.projectKey=CI-CD-Pipeline \
-            -Dsonar.sources=. \
+            -Dsonar.sources=code \
             -Dsonar.host.url=${SONAR_HOST_URL} \
             -Dsonar.login=${SONAR_AUTH_TOKEN}"
         }
