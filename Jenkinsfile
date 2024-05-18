@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     SONARQUBE_SCANNER_HOME = tool name: 'SonarQube Scanner' // Asegúrate de que este nombre coincide con el configurado en Jenkins
-    SONAR_HOST_URL = 'http://localhost:9000'
+    SONAR_HOST_URL = 'http://jnavapal-alps.nord:9000'
     SONAR_AUTH_TOKEN = credentials('sonar-auth-token') // Asegúrate de que este ID de credencial existe en Jenkins
   }
   stages {
