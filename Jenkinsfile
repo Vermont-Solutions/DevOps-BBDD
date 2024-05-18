@@ -47,7 +47,7 @@ pipeline {
           sh 'echo "Iniciando análisis con SonarQube"'
           sh "${SONARQUBE_SCANNER_HOME}/bin/sonar-scanner \
             -Dsonar.projectKey=CI-CD-Pipeline \
-            -Dsonar.sources=code \
+            -Dsonar.sources=ddl \
             -Dsonar.host.url=${SONAR_HOST_URL} \
             -Dsonar.login=${SONAR_AUTH_TOKEN}"
         }
